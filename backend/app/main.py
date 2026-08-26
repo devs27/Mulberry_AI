@@ -1,10 +1,9 @@
-"""
-MulberryCare AI - Backend entrypoint (Phase 1: architecture & health check).
-"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import health
+from app.api import health, auth
+from app.database.db import Base, engine
+from app.models import user  # noqa: F401 - ensures model is registered before create_all
 
 app = FastAPI(
     title="MulberryCare AI",
@@ -21,4 +20,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.on_event("startup")
+def on_startup():
+    Base.metadata.create_all(bind=engine)
+
+
 app.include_router(health.router)
+app.include_router(auth.router)
