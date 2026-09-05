@@ -1,6 +1,7 @@
 # Environment
 .env
-*.env.local
+.env.*
+!.env.example
 
 # Python
 __pycache__/
@@ -11,10 +12,19 @@ venv/
 env/
 *.egg-info/
 
-# Database
-*.db
+# Testing & Coverage
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
 
-# ML artifacts
+# Database & Local uploads
+*.db
+backend/static/uploads/
+
+# ML Datasets & Local test artifacts
+Mulberry leaf dataset/
+scratch_imgs/
 ml/models/*
 !ml/models/.gitkeep
 ml/datasets/*
@@ -23,18 +33,17 @@ ml/datasets/*
 *.pt
 *.onnx
 
-# Node (future frontend tooling)
+# Node
 node_modules/
 dist/
 build/
 
-# IDE
+# IDE & OS
 .idea/
 .vscode/
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Logs
+# Logs & Local Documents
 *.log
+*.docx

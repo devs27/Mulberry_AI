@@ -11,6 +11,7 @@ class UserSignup(BaseModel):
     password: str
     role: UserRole = UserRole.farmer
     preferred_language: Language = Language.en
+    village: Optional[str] = None
 
     @field_validator("password")
     @classmethod
@@ -38,6 +39,7 @@ class UserOut(BaseModel):
     phone: Optional[str] = None
     role: UserRole
     preferred_language: Language
+    village: Optional[str] = None
 
     class Config:
         from_attributes = True

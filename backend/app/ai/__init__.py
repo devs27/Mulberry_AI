@@ -1,1 +1,1 @@
-# placeholder - populated in later phases
+from app.ai.inference import predict

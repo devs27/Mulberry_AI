@@ -19,7 +19,9 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     if payload is None or "sub" not in payload:
         raise credentials_error
 
-    user = db.query(User).filter(User.id == payload["sub"]).first()
+    # User.id is a UUID string — query directly with str sub
+    user_id = str(payload["sub"])
+    user = db.query(User).filter(User.id == user_id).first()
     if user is None:
         raise credentials_error
     return user

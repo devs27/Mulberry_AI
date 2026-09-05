@@ -31,12 +31,41 @@ def signup(payload: UserSignup, db: Session = Depends(get_db)):
         password_hash=hash_password(payload.password),
         role=payload.role,
         preferred_language=payload.preferred_language,
+        village=payload.village,
     )
     db.add(user)
     db.commit()
     db.refresh(user)
 
-    token = create_access_token(subject=user.id, extra_claims={"role": user.role.value})
+    # Seed 2 mock diagnoses for demonstration / testing purposes
+    from datetime import datetime, timedelta
+    from app.models.diagnosis import Diagnosis
+    
+    diag1 = Diagnosis(
+        user_id=user.id,
+        disease="Leaf Rust",
+        confidence=0.91,
+        variety="S36",
+        timestamp=datetime.utcnow(),
+        severity="moderate",
+        is_uncertain=False,
+        image_path="/images/demo_leaf_rust.jpg"
+    )
+    diag2 = Diagnosis(
+        user_id=user.id,
+        disease="Healthy",
+        confidence=0.96,
+        variety="M5",
+        timestamp=datetime.utcnow() - timedelta(days=3),
+        severity=None,
+        is_uncertain=False,
+        image_path="/images/demo_healthy.jpg"
+    )
+    db.add(diag1)
+    db.add(diag2)
+    db.commit()
+
+    token = create_access_token(subject=str(user.id), extra_claims={"role": user.role.value})
     return Token(access_token=token, user=UserOut.model_validate(user))
 
 
@@ -50,7 +79,7 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
     if not user or not verify_password(payload.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token(subject=user.id, extra_claims={"role": user.role.value})
+    token = create_access_token(subject=str(user.id), extra_claims={"role": user.role.value})
     return Token(access_token=token, user=UserOut.model_validate(user))
 
 
