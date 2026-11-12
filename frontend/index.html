@@ -23,21 +23,18 @@
 
   <!-- Layer 2: Mulberry Leaf Ecosystem (18 leaves in 3 depth layers) -->
   <div class="bg-leaf-field" aria-hidden="true">
-    <!-- Background layer leaves (1–6): large, very faint, slight blur, slow 22-26s -->
     <div class="bg-leaf layer-bg"></div>
     <div class="bg-leaf layer-bg"></div>
     <div class="bg-leaf layer-bg"></div>
     <div class="bg-leaf layer-bg"></div>
     <div class="bg-leaf layer-bg"></div>
     <div class="bg-leaf layer-bg"></div>
-    <!-- Midground layer leaves (7–12): medium size, gentle floating 16-20s -->
     <div class="bg-leaf layer-mid"></div>
     <div class="bg-leaf layer-mid"></div>
     <div class="bg-leaf layer-mid"></div>
     <div class="bg-leaf layer-mid"></div>
     <div class="bg-leaf layer-mid"></div>
     <div class="bg-leaf layer-mid"></div>
-    <!-- Foreground/small layer leaves (13–18): smaller, sharper, slow drifting 10-14s -->
     <div class="bg-leaf layer-fg"></div>
     <div class="bg-leaf layer-fg"></div>
     <div class="bg-leaf layer-fg"></div>
@@ -66,7 +63,7 @@
         <div class="header-right-controls">
           <div id="status-bar" class="connection-status ok" aria-live="polite">
             <span class="status-dot" aria-hidden="true">●</span>
-            <span id="status" data-i18n="connected">Connected</span>
+            <span id="status" data-i18n="connected">Public Demo</span>
           </div>
           <div class="lang-selector-header" role="group" aria-label="Language selector">
             <span id="lang-en" class="lang-link active" onclick="setLanguage('en')" role="button" tabindex="0" aria-pressed="true">EN</span>
@@ -80,9 +77,9 @@
     </header>
 
     <!-- ========================================================
-         AUTH VIEW — LOGIN + SIGNUP
+         AUTH VIEW — (HIDDEN FOR PUBLIC DEMO)
          ======================================================== -->
-    <section id="auth-view" class="card auth-card" aria-label="Authentication">
+    <section id="auth-view" class="card auth-card hidden" aria-label="Authentication">
       <div class="auth-header-brand">
         <img src="logo.png" alt="MulberryCare AI" class="auth-logo" />
         <p class="auth-brand-name">MulberryCare AI</p>
@@ -169,12 +166,12 @@
     </section>
 
     <!-- ========================================================
-         DASHBOARD VIEW (shown after login)
+         DASHBOARD VIEW (SHOWN BY DEFAULT — ZERO LOGIN REQUIRED)
          ======================================================== -->
-    <section id="dashboard-view" class="dashboard-container hidden" aria-label="Farmer Dashboard">
+    <section id="dashboard-view" class="dashboard-container" aria-label="Farmer Dashboard">
 
       <!-- ======================================================
-           TOP HORIZONTAL NAVIGATION MENU BAR (CARDS IN A TOP ROW)
+           TOP HORIZONTAL NAVIGATION MENU BAR
            ====================================================== -->
       <nav class="top-horizontal-menu" id="top-horizontal-menu" aria-label="Dashboard module navigation">
         <div class="top-menu-tile active" id="tile-diagnose" onclick="switchDashboardView('diagnose')"
@@ -292,15 +289,15 @@
               <div class="profile-avatar" aria-hidden="true">👨‍🌾</div>
               <div class="profile-greeting-header">
                 <h2>
-                  <span id="greeting-text">Good morning</span>,
-                  <span id="farmer-name">Farmer</span> 👋
+                  <span id="greeting-text">Welcome</span>,
+                  <span id="farmer-name">Demo Farmer</span> 👋
                 </h2>
                 <p class="profile-greeting-sub" data-i18n="app_tagline">Smart Care for Better Mulberry Health</p>
               </div>
             </div>
             <div class="profile-pills-row">
               <span class="profile-pill">🌿 <span data-i18n="variety_label">Variety</span>: <strong id="farmer-variety">S36</strong></span>
-              <span class="profile-pill">📍 <span data-i18n="village_label">Village</span>: <strong id="farmer-village">—</strong></span>
+              <span class="profile-pill">📍 <span data-i18n="village_label">Village</span>: <strong id="farmer-village">Salem, TN</strong></span>
             </div>
           </div>
           <button class="btn logout-btn" onclick="handleLogout()" data-i18n="btn_logout" aria-label="Log out">⎋ Logout</button>
@@ -313,15 +310,15 @@
             <span style="font-size:1rem" aria-hidden="true">🌱</span>
           </div>
           <div class="health-score-body">
-            <div class="score-circle" id="score-circle" style="--score-pct:0">
+            <div class="score-circle" id="score-circle" style="--score-pct:88">
               <div class="score-circle-inner">
-                <span class="score-number" id="health-score-value">—</span>
+                <span class="score-number" id="health-score-value">88</span>
                 <span class="score-denom">/100</span>
               </div>
             </div>
             <div class="score-text-col">
-              <p class="score-status-text" id="score-status-text">—</p>
-              <p class="score-disclaimer" data-i18n="health_score_disclaimer">Indicative score based on available platform data.</p>
+              <p class="score-status-text" id="score-status-text">Good Crop Condition</p>
+              <p class="score-disclaimer" data-i18n="health_score_disclaimer">Indicative score based on active field metrics.</p>
               <div class="score-bar" id="score-bar" aria-hidden="true">
                 <span class="score-bar-seg danger"></span>
                 <span class="score-bar-seg warning"></span>
@@ -332,20 +329,20 @@
         </div>
 
         <!-- Recommended Action -->
-        <div id="recommended-action-card" class="alert-card hidden" role="alert">
+        <div id="recommended-action-card" class="alert-card" role="alert">
           <button class="alert-dismiss-btn" onclick="dismissRecommendedAction()" title="Dismiss alert" aria-label="Dismiss alert">✕</button>
           <div class="alert-card-inner">
             <div class="alert-card-title-row">
               <span class="alert-card-icon pulse" aria-hidden="true">⚡</span>
               <span class="alert-card-title" data-i18n="recommended_action_title">Recommended Action</span>
-              <span class="alert-severity-badge" id="alert-severity-badge">High Risk</span>
+              <span class="alert-severity-badge" id="alert-severity-badge" style="background:#22c55e; color:#fff;">Healthy Season</span>
             </div>
-            <p class="alert-card-text" id="recommended-action-text"></p>
+            <p class="alert-card-text" id="recommended-action-text">Run morning leaf inspection for early rust signs; maintain drip irrigation.</p>
             <div class="alert-card-btn-group">
               <button class="alert-card-btn primary" id="recommended-action-btn" onclick="switchDashboardView('diagnose')">
                 <span aria-hidden="true">🌿</span> Check Leaf Health
               </button>
-              <button class="alert-card-btn secondary hidden" id="recommended-action-secondary-btn">
+              <button class="alert-card-btn secondary" id="recommended-action-secondary-btn" onclick="switchDashboardView('chat')">
                 <span aria-hidden="true">💬</span> Ask AI Assistant
               </button>
             </div>
@@ -355,522 +352,3 @@
         <!-- Farm Snapshot -->
         <div class="farm-snapshot-card card">
           <div class="snapshot-header">
-            <span class="snapshot-title" data-i18n="snapshot_title">Farm Snapshot</span>
-            <span style="font-size:0.9rem" aria-hidden="true">📊</span>
-          </div>
-          <div class="snapshot-grid">
-            <div class="snapshot-item">
-              <span class="snapshot-item-icon" aria-hidden="true">🌿</span>
-              <span class="snapshot-label" data-i18n="snapshot_crop">Variety</span>
-              <span id="snapshot-val-variety" class="snapshot-value">S36</span>
-            </div>
-            <div class="snapshot-item">
-              <span class="snapshot-item-icon" aria-hidden="true">📋</span>
-              <span class="snapshot-label" data-i18n="snapshot_history">Logs</span>
-              <span id="snapshot-val-history" class="snapshot-value">0</span>
-            </div>
-            <div class="snapshot-item">
-              <span class="snapshot-item-icon" aria-hidden="true">🌡</span>
-              <span class="snapshot-label" data-i18n="snapshot_risk">Risk</span>
-              <span id="snapshot-val-risk" class="snapshot-value risk-tag-low">Low</span>
-            </div>
-          </div>
-        </div>
-
-
-
-        <!-- Recent Activity -->
-        <div class="recent-activity-card card">
-          <p class="section-title-sm" data-i18n="recent_activity_title">Recent Activity</p>
-          <div id="recent-activity-list" class="activity-list">
-            <p class="activity-empty" data-i18n="activity_empty">No recent activity.</p>
-          </div>
-        </div>
-
-      </aside>
-
-      <!-- ======================================================
-           RIGHT CONTENT PANELS
-           ====================================================== -->
-      <section id="dashboard-active-view-container" class="dashboard-content-panel" aria-live="polite">
-
-        <!-- ---- PANEL 1: DIAGNOSE LEAF ---- -->
-        <div id="panel-diagnose" class="active-panel">
-          <div class="card diagnosis-upload-card">
-            <div class="section-title-row">
-              <span class="section-icon" aria-hidden="true">🌿</span>
-              <h3 data-i18n="diagnose_title">AI Leaf Disease Diagnosis</h3>
-            </div>
-            <p class="section-desc" data-i18n="diagnose_desc">Upload a clear mulberry leaf image for instant AI-assisted diagnosis.</p>
-
-            <form id="upload-form" onsubmit="handleDiagnoseUpload(event)" novalidate>
-              <!-- Drag &amp; Drop Zone -->
-              <div class="form-group file-group" id="drop-zone"
-                   ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
-                <label for="leaf-file" class="file-label">
-                  <span class="upload-icon-svg" aria-hidden="true">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2"/>
-                      <circle cx="8.5" cy="8.5" r="1.5"/>
-                      <polyline points="21 15 16 10 5 21"/>
-                    </svg>
-                  </span>
-                  <span id="file-chosen-text" class="upload-primary-text" data-i18n="choose_image">Drop leaf photo here or tap to select</span>
-                  <span class="upload-subtext">Supports ALL Image Formats (JPG, PNG, WEBP, HEIC, TIFF, BMP) • Any File Size</span>
-                </label>
-                <input type="file" id="leaf-file" accept="image/*,.heic,.heif,.tiff,.tif,.bmp,.webp,.png,.jpg,.jpeg,.avif" capture="camera"
-                       required onchange="onFileSelected(this)" aria-label="Select leaf photo" />
-              </div>
-
-              <!-- Instant Preview -->
-              <div id="upload-preview-container" class="upload-preview-box hidden" aria-label="Image preview">
-                <div class="preview-image-wrapper">
-                  <img id="upload-preview" src="#" alt="Selected mulberry leaf preview" />
-                </div>
-                <div class="preview-actions">
-                  <span class="preview-status-pill">
-                    ✓ <span data-i18n="image_selected">Image selected</span>
-                  </span>
-                  <button type="button" class="btn btn-secondary btn-change-image btn-sm"
-                          onclick="triggerFileSelect()" data-i18n="btn_change_image">Change photo</button>
-                </div>
-              </div>
-
-              <button type="submit" id="btn-diagnose" class="btn btn-primary btn-diagnose-submit" data-i18n="btn_diagnose">
-                Diagnose Leaf
-              </button>
-            </form>
-
-            <!-- Step Progress Tracker -->
-            <div id="loading-steps-container" class="loading-steps-box hidden" aria-label="Processing progress" aria-live="polite">
-              <div class="loading-title">
-                <span class="loading-spinner" aria-hidden="true"></span>
-                <span data-i18n="processing_title">Analysing leaf image...</span>
-              </div>
-              <div class="steps-list" role="list">
-                <div class="step-item" id="step-1" role="listitem">
-                  <span class="step-check" id="check-1" aria-hidden="true">⚪</span>
-                  <span data-i18n="step_upload">Uploading leaf image...</span>
-                </div>
-                <div class="step-item" id="step-2" role="listitem">
-                  <span class="step-check" id="check-2" aria-hidden="true">⚪</span>
-                  <span data-i18n="step_quality">Verifying image quality...</span>
-                </div>
-                <div class="step-item" id="step-3" role="listitem">
-                  <span class="step-check" id="check-3" aria-hidden="true">⚪</span>
-                  <span data-i18n="step_detect">Running AI classification...</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Result Display -->
-            <div id="diagnosis-result" class="hidden result-box" aria-label="Diagnosis result" aria-live="polite">
-              <div class="result-header">
-                <div class="disease-title-row">
-                  <span id="result-disease" class="disease-name-display">—</span>
-                  <span class="ai-result-badge" data-i18n="ai_assisted">AI-ASSISTED</span>
-                </div>
-              </div>
-
-              <div class="confidence-bar-container">
-                <div class="confidence-bar-label">
-                  <span data-i18n="confidence_label">AI Confidence</span>
-                  <strong id="result-confidence">—</strong>
-                </div>
-                <div class="confidence-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div id="result-confidence-bar" class="confidence-bar-fill"></div>
-                </div>
-              </div>
-
-              <div id="result-advisory-box" class="result-advisory">
-                <h4 data-i18n="advisory_title">Treatment Advisory:</h4>
-                <p id="result-treatment">Advisory details will load here.</p>
-              </div>
-
-              <!-- Low-confidence uncertain warning -->
-              <div id="result-warning" class="uncertain-warning hidden" role="alert">
-                <div class="uncertain-warning-title">⚠ <span data-i18n="uncertain_title">Diagnosis Uncertain</span></div>
-                <p id="result-warning-text" data-i18n="uncertain_warning">AI confidence is below the safe threshold. Please capture another clear image or consult an agricultural expert.</p>
-                <div class="uncertain-actions">
-                  <button type="button" class="btn btn-warning btn-sm" onclick="triggerFileSelect()" data-i18n="uncertain_try_again">Try Another Image</button>
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="switchDashboardView('chat')" data-i18n="uncertain_ask_assistant">Ask MulberryCare</button>
-                </div>
-              </div>
-
-              <button id="btn-ask-disease" class="btn btn-secondary btn-ask-disease-cta hidden"
-                      onclick="askAboutCurrentDisease()">
-                <span aria-hidden="true">💬</span>
-                <span data-i18n="btn_ask_disease">Ask about this disease</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- ---- PANEL 2: HISTORY ---- -->
-        <div id="panel-history" class="active-panel hidden">
-          <div class="back-btn-row">
-            <button class="btn btn-secondary back-btn" onclick="switchDashboardView('diagnose')">
-              ← <span data-i18n="btn_back">Back</span>
-            </button>
-          </div>
-          <div class="card history-section">
-            <div class="section-title-row">
-              <span class="section-icon" aria-hidden="true">📋</span>
-              <h3 data-i18n="history_title">Diagnosis History</h3>
-            </div>
-            <div class="history-filter-bar" role="group" aria-label="Filter history">
-              <button class="filter-btn active" id="filter-all" onclick="filterHistory('all')" data-i18n="filter_all">All</button>
-              <button class="filter-btn" id="filter-healthy" onclick="filterHistory('healthy')" data-i18n="filter_healthy">Healthy</button>
-              <button class="filter-btn" id="filter-disease" onclick="filterHistory('disease')" data-i18n="filter_disease">Diseases</button>
-              <button class="filter-btn" id="filter-uncertain" onclick="filterHistory('uncertain')" data-i18n="filter_uncertain">Uncertain</button>
-            </div>
-            <div id="history-list" aria-label="Diagnosis history entries">
-              <p class="loading-msg" data-i18n="loading_history">Loading history...</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ---- PANEL 3: WEATHER RISK ---- -->
-        <div id="panel-weather" class="active-panel hidden">
-          <div class="back-btn-row">
-            <button class="btn btn-secondary back-btn" onclick="switchDashboardView('diagnose')">
-              ← <span data-i18n="btn_back">Back</span>
-            </button>
-          </div>
-          <div class="card weather-risk-card">
-            <div class="weather-demo-banner" aria-label="Demo data notice">
-              <span aria-hidden="true">🧪</span>
-              <span data-i18n="weather_demo_label">DEMO / SIMULATED WEATHER — Not real-time data</span>
-            </div>
-            <div class="section-title-row">
-              <span class="section-icon" aria-hidden="true">🌦️</span>
-              <h3 data-i18n="weather_risk_title">Weather &amp; Disease Risk</h3>
-            </div>
-            <p class="section-desc" data-i18n="weather_risk_desc">Simulated risk indicators based on historical local climate profiles.</p>
-
-            <div class="weather-summary">
-              <div class="weather-item">
-                <span class="weather-label" data-i18n="weather_temp">Temperature</span>
-                <span id="weather-val-temp" class="weather-value">--°C</span>
-              </div>
-              <div class="weather-item">
-                <span class="weather-label" data-i18n="weather_humidity">Humidity</span>
-                <span id="weather-val-humidity" class="weather-value">--%</span>
-              </div>
-              <div class="weather-item">
-                <span class="weather-label" data-i18n="weather_condition">Condition</span>
-                <span id="weather-val-condition" class="weather-value">--</span>
-              </div>
-            </div>
-
-            <div id="risk-alert-list" class="risk-list" aria-label="Disease risk levels">
-              <p class="loading-msg" data-i18n="loading_weather">Loading weather intelligence...</p>
-            </div>
-
-            <div class="weather-explanation-note">
-              <p>ⓘ <span data-i18n="weather_explanation">Risk awareness does not replace leaf diagnosis. Monitor field leaves regularly.</span></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ---- PANEL 4: AI CHATBOT ---- -->
-        <div id="panel-chat" class="active-panel hidden">
-          <div class="back-btn-row">
-            <button class="btn btn-secondary back-btn" onclick="switchDashboardView('diagnose')">
-              ← <span data-i18n="btn_back">Back</span>
-            </button>
-          </div>
-          <div class="card chat-card">
-            <div class="chat-header-row">
-              <div>
-                <h3 data-i18n="chat_title">✨ Ask MulberryCare</h3>
-                <p class="section-desc" style="margin-bottom:0" data-i18n="chat_desc">Your farming decision support assistant for mulberry &amp; sericulture.</p>
-              </div>
-              <div class="chat-safety-badge" title="Safety-guided responses for chemical queries">
-                <span aria-hidden="true">🛡</span>
-                <span data-i18n="safety_guided_badge">Safety-guided</span>
-              </div>
-            </div>
-
-            <!-- Active Diagnosis Context Banner -->
-            <div id="chat-diagnosis-banner" class="chat-context-banner hidden" role="region" aria-label="Active diagnosis context">
-              <div class="context-banner-content">
-                <span class="context-icon" aria-hidden="true">🌿</span>
-                <div class="context-details">
-                  <span class="context-title" data-i18n="active_context_label">Recent Diagnosis Context:</span>
-                  <strong id="chat-context-disease">—</strong>
-                  <span id="chat-context-conf" class="context-conf-pill">—</span>
-                </div>
-              </div>
-              <button type="button" class="btn-clear-context" onclick="clearChatDiagnosisContext()" title="Clear diagnosis context" aria-label="Clear context">✕</button>
-            </div>
-
-            <!-- Farmer-Friendly Primary Quick Actions -->
-            <div class="farmer-quick-actions-bar" role="group" aria-label="Farmer quick actions">
-              <button type="button" class="quick-action-pill highlight" onclick="sendQuickAction('today_checklist')">
-                <span>🌱</span> <span data-i18n="qa_today">What should I do today?</span>
-              </button>
-              <button type="button" class="quick-action-pill camera-pill" onclick="sendQuickAction('check_leaf')">
-                <span>📷</span> <span data-i18n="qa_check_leaf">Check a Leaf</span>
-              </button>
-              <button type="button" class="quick-action-pill" onclick="sendQuickAction('leaves_unhealthy')">
-                <span>🌿</span> <span data-i18n="qa_leaves_unhealthy">My leaves look unhealthy</span>
-              </button>
-              <button type="button" class="quick-action-pill" onclick="sendQuickAction('when_irrigate')">
-                <span>💧</span> <span data-i18n="qa_when_irrigate">When should I irrigate?</span>
-              </button>
-              <button type="button" class="quick-action-pill" onclick="sendQuickAction('found_pests')">
-                <span>🐛</span> <span data-i18n="qa_found_pests">I found pests</span>
-              </button>
-              <button type="button" class="quick-action-pill" onclick="sendQuickAction('how_prune')">
-                <span>🌱</span> <span data-i18n="qa_how_prune">How should I prune?</span>
-              </button>
-              <button type="button" class="quick-action-pill" onclick="sendQuickAction('worms_sick')">
-                <span>🐛</span> <span data-i18n="qa_worms_sick">My silkworms look sick</span>
-              </button>
-              <button type="button" class="quick-action-pill" onclick="sendQuickAction('prepare_cocoons')">
-                <span>💰</span> <span data-i18n="qa_prepare_cocoons">How do I prepare cocoons for sale?</span>
-              </button>
-            </div>
-
-            <!-- Category Filter Chips -->
-            <div class="suggested-questions-grid" role="group" aria-label="Quick topic categories">
-              <button type="button" class="suggestion-btn" onclick="sendSuggestedQuestion('pruning')">🌱 <span data-i18n="sugg_pruning">Pruning</span></button>
-              <button type="button" class="suggestion-btn" onclick="sendSuggestedQuestion('irrigation')">💧 <span data-i18n="sugg_irrigation">Irrigation</span></button>
-              <button type="button" class="suggestion-btn" onclick="sendSuggestedQuestion('disease')">🍃 <span data-i18n="sugg_disease">Leaf Disease</span></button>
-              <button type="button" class="suggestion-btn" onclick="sendSuggestedQuestion('fertilizer')">🌾 <span data-i18n="sugg_fertilizer">Fertilizer</span></button>
-              <button type="button" class="suggestion-btn" onclick="sendSuggestedQuestion('silkworm')">🐛 <span data-i18n="sugg_silkworm">Silkworm Care</span></button>
-              <button type="button" class="suggestion-btn" onclick="sendSuggestedQuestion('selling')">🏭 <span data-i18n="sugg_selling">Cocoon Selling</span></button>
-            </div>
-
-            <!-- Transcript -->
-            <div id="chat-transcript" class="chat-transcript-box" role="log" aria-label="Chat messages" aria-live="polite">
-              <div class="chat-msg msg-assistant">
-                <div class="msg-avatar" aria-hidden="true">🌿</div>
-                <div class="msg-bubble">
-                  <p data-i18n="chat_intro">Hello! I am your MulberryCare assistant. How can I help you with mulberry cultivation or sericulture today?</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Typing Indicator -->
-            <div id="chat-typing-indicator" class="chat-typing-box hidden" aria-label="AI is typing" aria-live="polite">
-              <span class="typing-dot" aria-hidden="true"></span>
-              <span class="typing-dot" aria-hidden="true"></span>
-              <span class="typing-dot" aria-hidden="true"></span>
-              <span class="typing-desc" data-i18n="chat_thinking">MulberryCare is preparing your answer...</span>
-            </div>
-
-            <!-- Input -->
-            <form id="chat-form" onsubmit="handleChatSubmit(event)" class="chat-input-form">
-              <input type="text" id="chat-input" required
-                     placeholder="Ask about pruning, irrigation, leaf health..."
-                     autocomplete="off" aria-label="Chat message input" />
-              <button type="submit" class="btn btn-primary btn-send" aria-label="Send message">➤</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- ---- PANEL 5: MARKETPLACE ---- -->
-        <div id="panel-market" class="active-panel hidden">
-          <div class="back-btn-row">
-            <button class="btn btn-secondary back-btn" onclick="switchDashboardView('diagnose')">
-              ← <span data-i18n="btn_back">Back</span>
-            </button>
-          </div>
-          <div class="card marketplace-card">
-            <div class="section-title-row">
-              <span class="section-icon" aria-hidden="true">🐛</span>
-              <div>
-                <h3 data-i18n="market_title">Cocoon Marketplace</h3>
-                <p class="section-desc" style="margin-bottom:0" data-i18n="market_desc">Connect farmers with buyers to sell your cocoon harvests.</p>
-              </div>
-            </div>
-
-            <div class="market-tabs" role="tablist">
-              <button id="tab-find-cocoons" class="market-tab-btn active"
-                      onclick="switchMarketTab('find')" role="tab" aria-selected="true"
-                      data-i18n="market_tab_find">🔎 Find Cocoons</button>
-              <button id="tab-sell-cocoons" class="market-tab-btn"
-                      onclick="switchMarketTab('sell')" role="tab" aria-selected="false"
-                      data-i18n="market_tab_sell">📦 Sell Cocoons</button>
-            </div>
-
-            <!-- FIND COCOONS -->
-            <div id="view-find-cocoons" class="market-view-panel">
-              <div class="search-filters">
-                <div class="form-group" style="margin-bottom:0">
-                  <label for="search-location" data-i18n="label_search_location">Search by Location</label>
-                  <input type="text" id="search-location" placeholder="Enter village or city" />
-                </div>
-                <div class="form-group" style="margin-bottom:0">
-                  <label for="search-variety" data-i18n="label_search_variety">Cocoon Variety</label>
-                  <select id="search-variety">
-                    <option value="" data-i18n="opt_all_varieties">All Varieties</option>
-                    <option value="Bivoltine">Bivoltine</option>
-                    <option value="Multivoltine">Multivoltine</option>
-                    <option value="Crossbreed">Crossbreed</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-              </div>
-              <button class="btn btn-primary btn-search-listings" onclick="searchMarketListings()" data-i18n="btn_search_listings">🔍 Search Listings</button>
-              <div id="market-search-results" class="listings-results-box" style="margin-top:18px" aria-label="Cocoon search results"></div>
-            </div>
-
-            <!-- SELL COCOONS -->
-            <div id="view-sell-cocoons" class="market-view-panel hidden">
-              <div class="sell-layout">
-                <!-- Form -->
-                <div class="listing-form-box">
-                  <form id="listing-form" onsubmit="handleCreateListing(event)" novalidate>
-                    <div class="form-group">
-                      <label for="list-variety" data-i18n="label_list_variety">Cocoon Variety</label>
-                      <select id="list-variety" required oninput="updateListingPreview()">
-                        <option value="Bivoltine">Bivoltine</option>
-                        <option value="Multivoltine">Multivoltine</option>
-                        <option value="Crossbreed">Crossbreed</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="list-price" data-i18n="label_list_price">Price per kg (₹)</label>
-                      <input type="number" id="list-price" step="0.01" required min="1"
-                             placeholder="e.g. 450" oninput="updateListingPreview()" />
-                    </div>
-                    <div class="form-group">
-                      <label for="list-quantity" data-i18n="label_list_quantity">Quantity (kg)</label>
-                      <input type="number" id="list-quantity" step="0.1" required min="0.1"
-                             placeholder="e.g. 80" oninput="updateListingPreview()" />
-                    </div>
-                    <div class="form-group">
-                      <label for="list-location" data-i18n="label_list_location">Location / Village</label>
-                      <input type="text" id="list-location" required
-                             placeholder="Enter location of cocoons" oninput="updateListingPreview()" />
-                    </div>
-                    <div class="form-group">
-                      <label for="list-phone" data-i18n="label_list_phone">Contact Phone</label>
-                      <input type="tel" id="list-phone" required placeholder="Enter contact number" />
-                    </div>
-                    <div class="form-group">
-                      <label for="list-desc" data-i18n="label_list_desc">Description (Optional)</label>
-                      <input type="text" id="list-desc"
-                             placeholder="e.g. High shell percentage, double cocoons sorted" />
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-i18n="btn_publish_listing">Publish Listing</button>
-                    <p id="listing-form-success" class="success-toast hidden"></p>
-                    <p id="listing-form-error" class="error-msg"></p>
-                  </form>
-
-                  <!-- Disclaimers -->
-                  <div class="disclaimers-box">
-                    <p class="disc-item">ⓘ <strong><span data-i18n="disc_quality_title">Farmer-reported information</span>:</strong> <span data-i18n="disc_quality_text">Buyers should physically verify cocoon quality before transaction.</span></p>
-                    <p class="disc-item">ⓘ <strong><span data-i18n="disc_price_title">Price Disclaimer</span>:</strong> <span data-i18n="disc_price_text">Listed prices are farmer-provided and may change.</span></p>
-                  </div>
-                </div>
-
-                <!-- Live Preview -->
-                <div class="listing-preview-card" id="listing-live-preview">
-                  <p class="preview-label">Live Preview</p>
-                  <p class="preview-variety-name" id="preview-variety">Bivoltine Cocoons</p>
-                  <p class="preview-price" id="preview-price">₹— / kg</p>
-                  <div class="preview-detail-row">📦 <span id="preview-qty">—</span> kg</div>
-                  <div class="preview-detail-row">📍 <span id="preview-location">—</span></div>
-                  <span class="preview-status-chip">● Active Listing</span>
-                  <p class="preview-contact-note">🔒 <span data-i18n="contact_protected">Seller contact protected</span></p>
-                </div>
-              </div>
-
-              <!-- Safe Trading -->
-              <div class="safe-trade-box">
-                <p class="safe-trade-title" data-i18n="safe_trade_title">✦ Safe Trading</p>
-                <ul class="safe-trade-list">
-                  <li data-i18n="safe_trade_1">Seller contact details protected until buyer requests</li>
-                  <li data-i18n="safe_trade_2">Listings are farmer-reported and self-certified</li>
-                  <li data-i18n="safe_trade_3">Physically verify cocoon quality before purchase</li>
-                  <li data-i18n="safe_trade_4">Check shell weight and pupal condition before transaction</li>
-                  <li data-i18n="safe_trade_5">Confirm final price directly with the farmer</li>
-                </ul>
-              </div>
-
-              <!-- My Listings -->
-              <div class="my-listings-section">
-                <h4 data-i18n="my_listings_title">📋 My Cocoon Listings</h4>
-                <div id="my-listings-list" aria-label="Your cocoon listings"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ---- PANEL 6: SETTINGS ---- -->
-        <div id="panel-settings" class="active-panel hidden">
-          <div class="back-btn-row">
-            <button class="btn btn-secondary back-btn" onclick="switchDashboardView('diagnose')">
-              ← <span data-i18n="btn_back">Back</span>
-            </button>
-          </div>
-          <div class="card settings-card">
-            <div class="section-title-row">
-              <span class="section-icon" aria-hidden="true">⚙</span>
-              <h3 data-i18n="settings_title">Profile &amp; Settings</h3>
-            </div>
-
-            <!-- Profile Info -->
-            <div class="settings-section">
-              <p class="settings-section-title" data-i18n="settings_profile_section">Farmer Profile</p>
-              <div class="settings-item">
-                <span class="settings-item-label" data-i18n="label_name">Full Name</span>
-                <span class="settings-item-value" id="settings-name">—</span>
-              </div>
-              <div class="settings-item">
-                <span class="settings-item-label" data-i18n="settings_contact">Contact</span>
-                <span class="settings-item-value" id="settings-contact">—</span>
-              </div>
-              <div class="settings-item">
-                <span class="settings-item-label" data-i18n="label_village">Village</span>
-                <span class="settings-item-value" id="settings-village">—</span>
-              </div>
-              <div class="settings-item">
-                <span class="settings-item-label" data-i18n="label_variety">Crop Variety</span>
-                <span class="settings-item-value" id="settings-variety">—</span>
-              </div>
-            </div>
-
-            <!-- Language -->
-            <div class="settings-section">
-              <p class="settings-section-title" data-i18n="settings_language_section">Language</p>
-              <div class="settings-item">
-                <span class="settings-item-label" data-i18n="label_language">Interface Language</span>
-                <div class="lang-selector-settings">
-                  <button class="lang-option-btn" id="settings-lang-en" onclick="setLanguage('en');updateSettingsPage()">EN</button>
-                  <button class="lang-option-btn" id="settings-lang-ta" onclick="setLanguage('ta');updateSettingsPage()">தமிழ்</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Theme -->
-            <div class="settings-section">
-              <p class="settings-section-title" data-i18n="settings_appearance_section">Appearance</p>
-              <div class="settings-item">
-                <span class="settings-item-label" data-i18n="settings_theme_label">Theme</span>
-                <div class="theme-selector">
-                  <button class="theme-option-btn" id="theme-opt-light" onclick="setTheme('light')" data-i18n="theme_light">☀ Light</button>
-                  <button class="theme-option-btn" id="theme-opt-dark" onclick="setTheme('dark')" data-i18n="theme_dark">🌙 Dark</button>
-                  <button class="theme-option-btn" id="theme-opt-system" onclick="setTheme('system')" data-i18n="theme_system">🖥 System</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </section>
-    </section>
-  </main>
-
-  <!-- Toast Notification Container -->
-  <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="false"></div>
-
-  <script src="js/app.js"></script>
-</body>
-</html>
